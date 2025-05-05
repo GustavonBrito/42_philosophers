@@ -4,7 +4,10 @@ HEADER = -I
 
 NAME = philo
 
-SRCS =	main.c
+SRCS =	main.c\
+		input_validations.c\
+		utils_validations.c\
+		parser.c
 
 OBJS =	$(SRCS:%.c=$(OBJ_DIR)/%.o)
 
