@@ -6,7 +6,7 @@
 /*   By: gustavo-linux <gustavo-linux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 22:40:40 by gustavo-lin       #+#    #+#             */
-/*   Updated: 2025/05/05 01:23:20 by gustavo-lin      ###   ########.fr       */
+/*   Updated: 2025/05/07 00:02:25 by gustavo-lin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ int	ft_atol(const char *nptr)
 		result = 10 * result + (nptr[index] - '0');
 		index++;
 	}
-	if (!(result >= 0 && result <= 2147483647))
+	if (!(result > 0 && result <= 2147483647))
 		return (-1);
 	return (result * sign);
 }
 
-int valid_just_numbers(char **argv)
+int valid_just_numbers(char *argv)
 {
 	int i;
 
@@ -49,6 +49,7 @@ int valid_just_numbers(char **argv)
 	{
 		if (!(argv[i] >= 48 && argv[i] <= 57))
 			return (-1);
+		i++;
 	}
 	return (1);
 }
