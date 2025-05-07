@@ -1,6 +1,6 @@
 CC = cc
 
-HEADER = -I
+#HEADER = ./
 
 NAME = philo
 
@@ -23,7 +23,7 @@ $(NAME): $(OBJS)
 
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) $(HEADER) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJS)
