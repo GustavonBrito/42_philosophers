@@ -6,7 +6,7 @@
 /*   By: gustavo-linux <gustavo-linux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 10:33:22 by gustavo-lin       #+#    #+#             */
-/*   Updated: 2025/05/05 01:23:28 by gustavo-lin      ###   ########.fr       */
+/*   Updated: 2025/05/06 23:55:16 by gustavo-lin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,6 @@
 # include <unistd.h>
 # include <sys/time.h>
 # include <pthread.h>
-
-int init_validations(int argc, char **argv);
-int	ft_atol(const char *nptr);
-int valid_just_numbers(char **argv);
 
 typedef struct s_rules
 {
@@ -47,5 +43,10 @@ typedef struct s_philo
 	pthread_mutex_t *right_fork;    // Ponteiro para o garfo da direita (mutex)
 	t_rules         *rules;         // Ponteiro para t_rules
 }	t_philo;
+
+int init_validations(int argc, char **argv);
+int	ft_atol(const char *nptr);
+int valid_just_numbers(char *argv);
+void parser(int argc, char **argv, t_rules *rules);
 
 #endif
