@@ -7,7 +7,10 @@ NAME = philo
 SRCS =	main.c\
 		input_validations.c\
 		utils_validations.c\
-		parser.c
+		parser.c\
+		init_mutex.c\
+		actions.c\
+		utils_actions.c\
 
 OBJS =	$(SRCS:%.c=$(OBJ_DIR)/%.o)
 

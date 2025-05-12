@@ -6,7 +6,7 @@
 /*   By: gustavo-linux <gustavo-linux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 10:33:22 by gustavo-lin       #+#    #+#             */
-/*   Updated: 2025/05/06 23:55:16 by gustavo-lin      ###   ########.fr       */
+/*   Updated: 2025/05/12 00:07:41 by gustavo-lin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,14 @@
 # include <sys/time.h>
 # include <pthread.h>
 
+//printf("Usage: ./philo [1-200 philosophers] [time_to_die] [time_to_eat] 
+//[time_to_sleep] [optional: times_each_philo_must_eat]\n");
+
+struct s_timeval {
+	time_t      tv_sec;     /* seconds */
+	suseconds_t tv_usec;    /* microseconds */
+};
+
 typedef struct s_rules
 {
 	int             philo_num;      // Número de filósofos
@@ -27,7 +35,6 @@ typedef struct s_rules
 	long            time_to_sleep;  // Tempo para dormir (em ms)
 	int             must_eat;       // (Opcional) Quantas vezes cada filósofo deve comer
 	int             someone_died;   // Flag para parar tudo quando alguém morrer
-
 	long            start_time;     // Marca o início da simulação (em ms)
 	pthread_mutex_t *forks;         // Array de mutexes: cada garfo é um mutex
 	pthread_mutex_t m_write;        // Mutex para garantir que prints não se misturem
@@ -44,9 +51,12 @@ typedef struct s_philo
 	t_rules         *rules;         // Ponteiro para t_rules
 }	t_philo;
 
-int init_validations(int argc, char **argv);
-int	ft_atol(const char *nptr);
-int valid_just_numbers(char *argv);
-void parser(int argc, char **argv, t_rules *rules);
+int 	init_validations(int argc, char **argv);
+int		ft_atol(const char *nptr);
+int 	valid_just_numbers(char *argv);
+t_rules *parser(int argc, char **argv, t_rules *rules);
+int 	init_mutexes(t_rules *rules);
+int		think(t_philo *philo);
+long	get_timestamp(void);
 
 #endif
