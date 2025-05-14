@@ -19,27 +19,49 @@ int	think(t_philo *philo);
 
 int think(t_philo *philo)
 {
-	printf("%ld %d: está pensando\n", get_timestamp() - philo->rules->start_time, philo->id);
+	pthread_mutex_lock(&philo->rules->m_write);
+	printf("%ld %d: is thinking\n", get_timestamp() - philo->rules->start_time, philo->id);
+	pthread_mutex_unlock(&philo->rules->m_write);
 	return (1);
 };
 
 int eat(t_philo *philo)
 {
-	struct timeval timeval;
-	
-	pthread_mutex_lock(philo->right_fork);
-	pthread_mutex_lock(philo->left_fork);
+	if (philo->id % 2 == 0)
+	{
+		pthread_mutex_lock(philo->right_fork);
+		pthread_mutex_lock(&philo->rules->m_write);
+		printf("%ld %d has taken a fork\n", get_timestamp() - philo->rules->start_time, philo->id);
+		pthread_mutex_unlock(&philo->rules->m_write);
+		pthread_mutex_lock(philo->left_fork);
+		pthread_mutex_lock(&philo->rules->m_write);
+		printf("%ld %d has taken a fork\n", get_timestamp() - philo->rules->start_time, philo->id);
+		pthread_mutex_unlock(&philo->rules->m_write);
+	}
+	else
+	{
+		pthread_mutex_lock(philo->left_fork);
+		pthread_mutex_lock(&philo->rules->m_write);
+		printf("%ld %d has taken a fork\n", get_timestamp() - philo->rules->start_time, philo->id);
+		pthread_mutex_unlock(&philo->rules->m_write);
+		pthread_mutex_lock(philo->right_fork);
+		pthread_mutex_lock(&philo->rules->m_write);
+		printf("%ld %d has taken a fork\n", get_timestamp() - philo->rules->start_time, philo->id);
+		pthread_mutex_unlock(&philo->rules->m_write);
+	}
 	pthread_mutex_lock(&philo->rules->m_write);
-	printf("lock");
+	printf("%ld %d is eating\n", get_timestamp() - philo->rules->start_time, philo->id);
+	philo->last_meal = get_timestamp();
+	usleep(philo->rules->time_to_eat * 1000);
 	philo->meals++;
-	philo->last_meal = gettimeofday(&timeval, NULL);
-	pthread_mutex_unlock(&philo->rules->m_write);
 	pthread_mutex_unlock(philo->right_fork);
 	pthread_mutex_unlock(philo->left_fork);
-	usleep(10);
 	return (1);
 }
 
-//int sleep();
+int sleep()
+{
+
+}
 
 //int die();
