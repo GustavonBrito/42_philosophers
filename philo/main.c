@@ -6,7 +6,7 @@
 /*   By: gustavo-linux <gustavo-linux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 22:09:34 by gustavo-lin       #+#    #+#             */
-/*   Updated: 2025/05/12 22:21:56 by gustavo-lin      ###   ########.fr       */
+/*   Updated: 2025/05/14 22:44:41 by gustavo-lin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,5 @@ int	main(int argc, char **argv)
 	if (init_philo(&philo, rules) == 0)
 		return (free(rules), free(philo), 0);
 	rules->start_time = get_timestamp();
-	philo_routine();
+	//philo_routine();
 }
