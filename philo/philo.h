@@ -6,7 +6,7 @@
 /*   By: gustavo-linux <gustavo-linux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 10:33:22 by gustavo-lin       #+#    #+#             */
-/*   Updated: 2025/05/12 00:07:41 by gustavo-lin      ###   ########.fr       */
+/*   Updated: 2025/05/14 23:07:41 by gustavo-lin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,6 @@ t_rules *parser(int argc, char **argv, t_rules *rules);
 int 	init_mutexes(t_rules *rules);
 int		think(t_philo *philo);
 long	get_timestamp(void);
+int		init_philo(t_philo **philo, t_rules *rules);
 
 #endif

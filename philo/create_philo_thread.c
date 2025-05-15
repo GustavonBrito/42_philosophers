@@ -6,18 +6,26 @@
 /*   By: gustavo-linux <gustavo-linux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 23:48:37 by gustavo-lin       #+#    #+#             */
-/*   Updated: 2025/05/12 00:11:03 by gustavo-lin      ###   ########.fr       */
+/*   Updated: 2025/05/14 23:08:22 by gustavo-lin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int create_threads(t_rules *rules, t_philo *philo)
+int init_philo(t_philo **philo, t_rules *rules)
 {
 	int i;
 
 	i = -1;
-	while (++i < rules->philo_num)
-		pthread_create(&philo[i].thread, NULL, think, &philo[i]);
+	*philo = (t_philo *)malloc(sizeof(t_philo) * rules->philo_num);
+	if (!(*philo))
+		return (0);
+	while(++i < rules->philo_num)
+	{
+		(*philo)[i].id = i + 1;
+		(*philo)[i].rules = rules;
+		(*philo)[i].left_fork = &rules->forks[i];
+		(*philo)[i].right_fork = &rules->forks[(i + 1) % rules->philo_num];
+	}
 	return (1);
 }

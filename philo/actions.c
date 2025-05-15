@@ -6,15 +6,15 @@
 /*   By: gustavo-linux <gustavo-linux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 15:49:01 by gustavo-lin       #+#    #+#             */
-/*   Updated: 2025/05/12 00:07:28 by gustavo-lin      ###   ########.fr       */
+/*   Updated: 2025/05/14 23:12:32 by gustavo-lin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
 int eat(t_philo *philo);
-// int sleep();
-// int die();
+int sleep(t_philo *philo);
+// int die(t_philo *philo);
 int	think(t_philo *philo);
 
 int think(t_philo *philo)
@@ -59,7 +59,7 @@ int eat(t_philo *philo)
 	return (1);
 }
 
-int sleep()
+int sleep(t_philo *philo)
 {
 
 }
