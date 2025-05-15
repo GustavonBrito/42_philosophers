@@ -6,7 +6,7 @@
 /*   By: gustavo-linux <gustavo-linux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 15:49:01 by gustavo-lin       #+#    #+#             */
-/*   Updated: 2025/05/12 00:07:28 by gustavo-lin      ###   ########.fr       */
+/*   Updated: 2025/05/14 00:01:30 by gustavo-lin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	think(t_philo *philo);
 
 int think(t_philo *philo)
 {
-	printf("%ld %d: está pensando\n", get_timestamp() - philo->rules->start_time, philo->id);
+	printf("%ld %d: is thinking\n", get_timestamp() - philo->rules->start_time, philo->id);
 	return (1);
 };
 
@@ -30,16 +30,16 @@ int eat(t_philo *philo)
 	pthread_mutex_lock(philo->right_fork);
 	pthread_mutex_lock(philo->left_fork);
 	pthread_mutex_lock(&philo->rules->m_write);
-	printf("lock");
+	printf("%ld %d: is eating\n", get_timestamp() - philo->rules->start_time, philo->id);
+	usleep(philo->rules->time_to_eat);
 	philo->meals++;
-	philo->last_meal = gettimeofday(&timeval, NULL);
+	philo->last_meal = get_timestamp();
 	pthread_mutex_unlock(&philo->rules->m_write);
 	pthread_mutex_unlock(philo->right_fork);
 	pthread_mutex_unlock(philo->left_fork);
-	usleep(10);
 	return (1);
 }
 
-//int sleep();
+int sleep();
 
 //int die();
