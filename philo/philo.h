@@ -6,7 +6,7 @@
 /*   By: gustavo-linux <gustavo-linux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 10:33:22 by gustavo-lin       #+#    #+#             */
-/*   Updated: 2025/05/14 23:07:41 by gustavo-lin      ###   ########.fr       */
+/*   Updated: 2025/05/15 21:31:22 by gustavo-lin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,11 @@ int		ft_atol(const char *nptr);
 int 	valid_just_numbers(char *argv);
 t_rules *parser(int argc, char **argv, t_rules *rules);
 int 	init_mutexes(t_rules *rules);
-int		think(t_philo *philo);
 long	get_timestamp(void);
 int		init_philo(t_philo **philo, t_rules *rules);
+int		think(t_philo *philo);
+int		sleep(t_philo *philo);
+int		eat(t_philo *philo);
+int		die(t_philo *philo);
 
 #endif
