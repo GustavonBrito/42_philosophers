@@ -6,7 +6,7 @@
 /*   By: gustavo-linux <gustavo-linux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 22:09:34 by gustavo-lin       #+#    #+#             */
-/*   Updated: 2025/05/14 23:12:17 by gustavo-lin      ###   ########.fr       */
+/*   Updated: 2025/05/19 00:18:19 by gustavo-lin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,11 @@ int	main(int argc, char **argv)
 {
 	t_rules	*rules;
 	t_philo	*philo;
-
+	void *routine_return;
+	int i;
+	
+	i = -1;
+	routine_return = NULL;
 	rules = (t_rules *)malloc(sizeof(t_rules));
 	if (!rules)
 		return (0);
@@ -31,6 +35,17 @@ int	main(int argc, char **argv)
 	if (init_philo(&philo, rules) == 0)
 		return (free(rules), free(philo), 0);
 	rules->start_time = get_timestamp();
-	//philo_routine();
+	while (++i < rules->philo_num)
+	{
+		printf("Iter: %d\n", i);
+		pthread_create(&philo[i].thread, NULL, philo_routine, &philo[i]);
+	}
+	// i = -1;
+	// while (++i < rules->philo_num)
+	// {
+	// 	pthread_join(philo[i].thread, &routine_return);
+	// 	if ((long)routine_return == -1)
+	// 		return (0);
+	// }
 	return (0);
 }

@@ -11,13 +11,14 @@ SRCS =	main.c\
 		init_mutex.c\
 		actions.c\
 		utils_actions.c\
-		create_philo_thread.c
+		create_philo_thread.c\
+		philo_routine.c 
 
 OBJS =	$(SRCS:%.c=$(OBJ_DIR)/%.o)
 
 OBJ_DIR = build
 
-CFLAGS = -Werror -Wall -Wextra
+#CFLAGS = -Werror -Wall -Wextra
 THREAD_FLAGS = -pthread
 
 all: $(NAME)
