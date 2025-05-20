@@ -6,7 +6,7 @@
 /*   By: gustavo-linux <gustavo-linux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 22:09:34 by gustavo-lin       #+#    #+#             */
-/*   Updated: 2025/05/19 23:10:12 by gustavo-lin      ###   ########.fr       */
+/*   Updated: 2025/05/19 23:43:47 by gustavo-lin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,9 @@ int	main(int argc, char **argv)
 {
 	t_rules	*rules;
 	t_philo	*philo;
-	void *routine_return;
 	int i;
 	
 	i = -1;
-	routine_return = NULL;
 	rules = (t_rules *)malloc(sizeof(t_rules));
 	if (!rules)
 		return (0);
@@ -40,8 +38,8 @@ int	main(int argc, char **argv)
 	i = -1;
 	while (++i < rules->philo_num)
 	{
-		pthread_join(philo[i].thread, &routine_return);
-		if ((long)routine_return == -1)
+		pthread_join(philo[i].thread, NULL);
+		if (philo->rules->someone_died == 1)
 			return (0);
 	}
 	return (0);
