@@ -6,7 +6,7 @@
 /*   By: gustavo-linux <gustavo-linux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 22:09:34 by gustavo-lin       #+#    #+#             */
-/*   Updated: 2025/05/19 00:18:19 by gustavo-lin      ###   ########.fr       */
+/*   Updated: 2025/05/19 23:10:12 by gustavo-lin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,13 @@ int	main(int argc, char **argv)
 		return (free(rules), free(philo), 0);
 	rules->start_time = get_timestamp();
 	while (++i < rules->philo_num)
-	{
-		printf("Iter: %d\n", i);
 		pthread_create(&philo[i].thread, NULL, philo_routine, &philo[i]);
+	i = -1;
+	while (++i < rules->philo_num)
+	{
+		pthread_join(philo[i].thread, &routine_return);
+		if ((long)routine_return == -1)
+			return (0);
 	}
-	// i = -1;
-	// while (++i < rules->philo_num)
-	// {
-	// 	pthread_join(philo[i].thread, &routine_return);
-	// 	if ((long)routine_return == -1)
-	// 		return (0);
-	// }
 	return (0);
 }
