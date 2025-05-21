@@ -23,7 +23,6 @@ void think(t_philo *philo)
 	pthread_mutex_lock(&philo->rules->m_write);
 	printf("%ld %d is thinking\n", get_timestamp() - philo->rules->start_time, philo->id);
 	pthread_mutex_unlock(&philo->rules->m_write);
-	return (1);
 };
 
 void eat(t_philo *philo)
@@ -53,12 +52,11 @@ void eat(t_philo *philo)
 	pthread_mutex_lock(&philo->rules->m_write);
 	printf("%ld %d is eating\n", get_timestamp() - philo->rules->start_time, philo->id);
 	pthread_mutex_unlock(&philo->rules->m_write);
-	philo->last_meal = get_timestamp();
 	usleep(philo->rules->time_to_eat * 1000);
+	philo->last_meal = get_timestamp();
 	philo->meals++;
 	pthread_mutex_unlock(philo->right_fork);
 	pthread_mutex_unlock(philo->left_fork);
-	return (1);
 }
 
 void sleep_philo(t_philo *philo)
@@ -67,7 +65,6 @@ void sleep_philo(t_philo *philo)
 	printf("%ld %d is sleeping\n", get_timestamp() - philo->rules->start_time, philo->id);
 	pthread_mutex_unlock(&philo->rules->m_write);
 	usleep(philo->rules->time_to_sleep * 1000);
-	return (1);
 }
 
 void die(t_philo *philo)
@@ -75,10 +72,9 @@ void die(t_philo *philo)
 	pthread_mutex_lock(&philo->rules->m_write);
 	printf("%ld %d: died\n", get_timestamp() - philo->rules->start_time, philo->id);
 	pthread_mutex_unlock(&philo->rules->m_write);
-	return (-1);
 }
 
-void *dead_scan(void *arg)
+void dead_scan(void *arg)
 {
 	t_philo *philo = (t_philo *)arg;
 	pthread_mutex_init(philo->rules->dead_philo, NULL);
@@ -91,8 +87,7 @@ void *dead_scan(void *arg)
 			philo->rules->someone_died = 1;
 			die(philo);
 			pthread_mutex_unlock(philo->rules->dead_philo);
-			return (&philo->rules->someone_died); //Verificar melhor retorno depois e tambem todos os frees que é preciso fazer.
+			//Verificar melhor retorno depois e tambem todos os frees que é preciso fazer.
 		}
 	}
-	return (NULL);
 }

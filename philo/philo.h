@@ -64,7 +64,7 @@ void				think(t_philo *philo);
 void				sleep_philo(t_philo *philo);
 void				eat(t_philo *philo);
 void				die(t_philo *philo);
-void				*dead_scan(void *arg);
+void				dead_scan(void *arg);
 void				*philo_routine(void *arg);
 
 #endif
