@@ -30,27 +30,27 @@ struct				s_timeval
 
 typedef struct s_rules
 {
-	int philo_num; // Número de filósofos
+	int 			philo_num; // Número de filósofos
 	long			time_to_die;	// Tempo máximo SEM comer antes de morrer (em ms)
-	long time_to_eat;   // Tempo para comer (em ms)
-	long time_to_sleep; // Tempo para dormir (em ms)
+	long 			time_to_eat;   // Tempo para comer (em ms)
+	long 			time_to_sleep; // Tempo para dormir (em ms)
 	int				must_eat;// (Opcional) Quantas vezes cada filósofo deve comer
-	int someone_died;       // Flag para parar tudo quando alguém morrer
-	long start_time;        // Marca o início da simulação (em ms)
+	int 			someone_died;       // Flag para parar tudo quando alguém morrer
+	long 			start_time;        // Marca o início da simulação (em ms)
 	pthread_mutex_t *forks; // Array de mutexes: cada garfo é um mutex
-	pthread_mutex_t	*dead_philo;	// Mutex to acces the variable someone died by more than one function
+	pthread_mutex_t	dead_philo;	// Mutex to acces the variable someone died by more than one function
 	pthread_mutex_t	m_write;	// Mutex para garantir que prints não se misturem
 }	t_rules;
 
 typedef struct s_philo
 {
-	int id;                      // ID único do filósofo (de 1 a n)
-	int meals;                   // Quantas vezes este filósofo já comeu
-	long last_meal;              // Timestamp da última refeição
-	pthread_t thread;            // A thread do filósofo
+	int 			id;                      // ID único do filósofo (de 1 a n)
+	int 			meals;                   // Quantas vezes este filósofo já comeu
+	long 			last_meal;              // Timestamp da última refeição
+	pthread_t 		thread;            // A thread do filósofo
 	pthread_mutex_t *left_fork;  // Ponteiro para o garfo da esquerda (mutex)
 	pthread_mutex_t *right_fork; // Ponteiro para o garfo da direita (mutex)
-	t_rules *rules;              // Ponteiro para t_rules
+	t_rules			*rules;              // Ponteiro para t_rules
 }	t_philo;
 
 int					init_validations(int argc, char **argv);
@@ -64,7 +64,7 @@ void				think(t_philo *philo);
 void				sleep_philo(t_philo *philo);
 void				eat(t_philo *philo);
 void				die(t_philo *philo);
-void				dead_scan(void *arg);
+void				*dead_scan(void *arg);
 void				*philo_routine(void *arg);
 
 #endif

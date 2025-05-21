@@ -36,12 +36,13 @@ int	main(int argc, char **argv)
 	if (init_philo(&philo, rules) == 0)
 		return (free(rules), free(philo), 0);
 	rules->start_time = get_timestamp();
-	pthread_create(&thread_dead_scan, NULL, dead_scan, NULL);
+	pthread_create(&thread_dead_scan, NULL, dead_scan, &philo);
 	while (++i < rules->philo_num)
 		pthread_create(&philo[i].thread, NULL, philo_routine, &philo[i]);
 	i = -1;
 	while (++i < rules->philo_num)
 		pthread_join(philo[i].thread, NULL);
+	pthread_join(thread_dead_scan, NULL);
 	if (philo->rules->someone_died == 1)
 		return (0);
 	return (0);

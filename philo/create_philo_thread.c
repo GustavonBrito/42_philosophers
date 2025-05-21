@@ -26,6 +26,7 @@ int init_philo(t_philo **philo, t_rules *rules)
 		(*philo)[i].rules = rules;
 		(*philo)[i].left_fork = &rules->forks[i];
 		(*philo)[i].right_fork = &rules->forks[(i + 1) % rules->philo_num];
+		(*philo)[i].last_meal = 0;
 	}
 	return (1);
 }

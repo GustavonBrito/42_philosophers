@@ -27,6 +27,7 @@ void think(t_philo *philo)
 
 void eat(t_philo *philo)
 {
+	// if (philo->last_meal - get_timestamp() >= philo->rules->time_to_die)
 	if (philo->id % 2 == 0)
 	{
 		pthread_mutex_lock(philo->right_fork);
@@ -74,20 +75,23 @@ void die(t_philo *philo)
 	pthread_mutex_unlock(&philo->rules->m_write);
 }
 
-void dead_scan(void *arg)
-{
+void *dead_scan(void *arg)
+{	
 	t_philo *philo = (t_philo *)arg;
-	pthread_mutex_init(philo->rules->dead_philo, NULL);
+	//pthread_mutex_init(philo->rules.dead_philo, NULL);
 	
 	while (1)
 	{
-		if (philo->last_meal - get_timestamp() >= philo->rules->time_to_die)
-		{
-			pthread_mutex_lock(philo->rules->dead_philo);
-			philo->rules->someone_died = 1;
-			die(philo);
-			pthread_mutex_unlock(philo->rules->dead_philo);
-			//Verificar melhor retorno depois e tambem todos os frees que é preciso fazer.
-		}
+		sleep(5);
+		printf("%ld\n", philo[2].last_meal);
+		// if (philo->last_meal - get_timestamp() >= philo->rules->time_to_die)
+		// {
+		// 	//die(philo);
+		// 	//pthread_mutex_lock(philo->rules->dead_philo);
+		// 	//philo->rules->someone_died = 1;
+		// 	//pthread_mutex_unlock(philo->rules->dead_philo);
+		// 	return (NULL);
+		// 	//Verificar melhor retorno depois e tambem todos os frees que é preciso fazer.
+		// }
 	}
 }
