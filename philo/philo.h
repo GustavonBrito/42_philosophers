@@ -6,7 +6,7 @@
 /*   By: gustavo-linux <gustavo-linux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 10:33:22 by gustavo-lin       #+#    #+#             */
-/*   Updated: 2025/05/19 00:17:10 by gustavo-lin      ###   ########.fr       */
+/*   Updated: 2025/05/20 23:37:49 by gustavo-lin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,10 @@ t_rules				*parser(int argc, char **argv, t_rules *rules);
 int					init_mutexes(t_rules *rules);
 long				get_timestamp(void);
 int					init_philo(t_philo **philo, t_rules *rules);
-int					think(t_philo *philo);
-int					sleep_philo(t_philo *philo);
-int					eat(t_philo *philo);
-int					die(t_philo *philo);
+void				think(t_philo *philo);
+void				sleep_philo(t_philo *philo);
+void				eat(t_philo *philo);
+void				die(t_philo *philo);
 void				*dead_scan(void *arg);
 void				*philo_routine(void *arg);
 

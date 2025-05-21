@@ -6,18 +6,19 @@
 /*   By: gustavo-linux <gustavo-linux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 15:49:01 by gustavo-lin       #+#    #+#             */
-/*   Updated: 2025/05/19 23:12:08 by gustavo-lin      ###   ########.fr       */
+/*   Updated: 2025/05/20 23:37:02 by gustavo-lin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int eat(t_philo *philo);
-int sleep_philo(t_philo *philo);
-int die(t_philo *philo);
-int	think(t_philo *philo);
+void	eat(t_philo *philo);
+void	sleep_philo(t_philo *philo);
+void	die(t_philo *philo);
+void	think(t_philo *philo);
+void	*dead_scan(void *arg);
 
-int think(t_philo *philo)
+void think(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->rules->m_write);
 	printf("%ld %d is thinking\n", get_timestamp() - philo->rules->start_time, philo->id);
@@ -25,7 +26,7 @@ int think(t_philo *philo)
 	return (1);
 };
 
-int eat(t_philo *philo)
+void eat(t_philo *philo)
 {
 	if (philo->id % 2 == 0)
 	{
@@ -60,7 +61,7 @@ int eat(t_philo *philo)
 	return (1);
 }
 
-int sleep_philo(t_philo *philo)
+void sleep_philo(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->rules->m_write);
 	printf("%ld %d is sleeping\n", get_timestamp() - philo->rules->start_time, philo->id);
@@ -69,7 +70,7 @@ int sleep_philo(t_philo *philo)
 	return (1);
 }
 
-int die(t_philo *philo)
+void die(t_philo *philo)
 {	
 	pthread_mutex_lock(&philo->rules->m_write);
 	printf("%ld %d: died\n", get_timestamp() - philo->rules->start_time, philo->id);
