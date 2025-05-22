@@ -6,7 +6,7 @@
 /*   By: gustavo-linux <gustavo-linux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 22:09:34 by gustavo-lin       #+#    #+#             */
-/*   Updated: 2025/05/22 10:57:59 by gustavo-lin      ###   ########.fr       */
+/*   Updated: 2025/05/22 15:12:41 by gustavo-lin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,9 @@ int	main(int argc, char **argv)
 	t_rules	*rules;
 	t_philo	*philo;
 	int i;
-	void *thread_return;
 	pthread_t thread_dead_scan;
-
-	thread_return = NULL;
+	pthread_t thread_must_eat_scan;
+	
 	i = -1;
 	rules = (t_rules *)malloc(sizeof(t_rules));
 	if (!rules)
@@ -37,13 +36,15 @@ int	main(int argc, char **argv)
 		return (free(rules), free(philo), 0);
 	rules->start_time = get_timestamp();
 	pthread_create(&thread_dead_scan, NULL, dead_scan, philo);
+	pthread_create(&thread_must_eat_scan, NULL, must_eat_scan, philo);
 	while (++i < rules->philo_num)
 		pthread_create(&philo[i].thread, NULL, philo_routine, &philo[i]);
 	i = -1;
 	while (++i < rules->philo_num)
 		pthread_join(philo[i].thread, NULL);
 	pthread_join(thread_dead_scan, NULL);
-	if (philo->rules->someone_died == 1)
-		return (3);
+	pthread_join(thread_must_eat_scan, NULL);
+	if (philo->rules->someone_died == 1 || (philo->meals >= philo->rules->must_eat && philo->rules->must_eat != 0))
+		return (0);
 	return (0);
 }
