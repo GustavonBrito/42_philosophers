@@ -6,7 +6,7 @@
 /*   By: gustavo-linux <gustavo-linux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 00:08:24 by gustavo-lin       #+#    #+#             */
-/*   Updated: 2025/05/20 23:35:26 by gustavo-lin      ###   ########.fr       */
+/*   Updated: 2025/05/22 13:57:04 by gustavo-lin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void *philo_routine(void *arg)
 
 	while (1)
 	{
-		if (philo->rules->someone_died == 1)
+		if (philo->rules->someone_died == 1 || (philo->meals == philo->rules->must_eat  && philo->rules->must_eat != 0))
 			return (NULL);
 		think(philo);
 		eat(philo);
