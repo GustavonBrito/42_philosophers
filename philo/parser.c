@@ -6,7 +6,7 @@
 /*   By: gustavo-linux <gustavo-linux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 20:56:53 by gustavo-lin       #+#    #+#             */
-/*   Updated: 2025/05/11 22:08:38 by gustavo-lin      ###   ########.fr       */
+/*   Updated: 2025/05/22 13:14:52 by gustavo-lin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,7 @@ t_rules *parser(int argc, char **argv, t_rules *rules)
 	rules->time_to_sleep = ft_atol(argv[4]);
 	if (argc == 6)
 		rules->must_eat = ft_atol(argv[5]);
+	else
+		rules->must_eat = 0;
 	return (rules);
 }
