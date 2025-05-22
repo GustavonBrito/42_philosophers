@@ -6,7 +6,7 @@
 /*   By: gustavo-linux <gustavo-linux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 10:33:22 by gustavo-lin       #+#    #+#             */
-/*   Updated: 2025/05/20 23:37:49 by gustavo-lin      ###   ########.fr       */
+/*   Updated: 2025/05/22 11:17:28 by gustavo-lin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 
 struct				s_timeval
 {
-	time_t tv_sec;       /* seconds */
-	suseconds_t tv_usec; /* microseconds */
+	time_t tv_sec;
+	suseconds_t tv_usec;
 };
 
 typedef struct s_rules
@@ -63,7 +63,7 @@ int					init_philo(t_philo **philo, t_rules *rules);
 void				think(t_philo *philo);
 void				sleep_philo(t_philo *philo);
 void				eat(t_philo *philo);
-void				die(t_philo *philo);
+void				die(t_philo philo);
 void				*dead_scan(void *arg);
 void				*philo_routine(void *arg);
 
