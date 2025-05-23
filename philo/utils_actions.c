@@ -6,7 +6,7 @@
 /*   By: gustavo-linux <gustavo-linux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 08:34:24 by gustavo-lin       #+#    #+#             */
-/*   Updated: 2025/05/22 15:28:18 by gustavo-lin      ###   ########.fr       */
+/*   Updated: 2025/05/22 23:21:49 by gustavo-lin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,15 @@ void *dead_scan(void *arg)
 	i = 0;
 	while (1)
 	{
-		if (philo->rules->scan_end == 1)
-			return (NULL);
-		if (rules->someone_died)
-			return NULL;
+		// if (philo->rules->scan_end == 1)
+		// 	return (NULL);
+		// if (rules->someone_died)
+		// 	return NULL;
 		if (i >= rules->philo_num)
 			i = 0;
-		if ((get_timestamp() - philo[i].last_meal) > rules->time_to_die && philo[i].last_meal != 0 && philo->rules->must_eat == 0)
+		if ((get_timestamp() - philo->rules->start_time) >= rules->time_to_die && philo->rules->philo_num == 1)
+			return (die(philo[i]), philo->rules->scan_end = 1, pthread_mutex_unlock(philo[0].left_fork), NULL);
+		if ((get_timestamp() - philo[i].last_meal) >= rules->time_to_die && philo[i].last_meal != 0 && philo->rules->must_eat == 0)
 			return (die(philo[i]), philo->rules->scan_end = 1, NULL);
 		i++;
 		usleep(1000);

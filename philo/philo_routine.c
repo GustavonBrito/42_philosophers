@@ -6,7 +6,7 @@
 /*   By: gustavo-linux <gustavo-linux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 00:08:24 by gustavo-lin       #+#    #+#             */
-/*   Updated: 2025/05/22 13:57:04 by gustavo-lin      ###   ########.fr       */
+/*   Updated: 2025/05/22 23:18:23 by gustavo-lin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,3 @@ void *philo_routine(void *arg)
 	}
 	return (NULL);
 }
-//Parei aqui verificando sobre seg fault
