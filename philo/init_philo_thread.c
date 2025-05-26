@@ -6,7 +6,7 @@
 /*   By: gustavo-linux <gustavo-linux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 23:48:37 by gustavo-lin       #+#    #+#             */
-/*   Updated: 2025/05/22 23:19:23 by gustavo-lin      ###   ########.fr       */
+/*   Updated: 2025/05/25 21:58:43 by gustavo-lin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int init_philo(t_philo **philo, t_rules *rules)
 		(*philo)[i].rules = rules;
 		(*philo)[i].left_fork = &rules->forks[i];
 		(*philo)[i].right_fork = &rules->forks[(i + 1) % rules->philo_num];
-		//(*philo)[i].last_meal = 0;
 		(*philo)[i].last_meal = get_timestamp();
 		(*philo)[i].finished_eating = 0;
 	}
