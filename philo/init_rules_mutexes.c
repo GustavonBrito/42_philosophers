@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_routine.c                                    :+:      :+:    :+:   */
+/*   init_rules_mutex.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gustavo-linux <gustavo-linux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/12 00:08:24 by gustavo-lin       #+#    #+#             */
-/*   Updated: 2025/05/25 02:02:06 by gustavo-lin      ###   ########.fr       */
+/*   Created: 2025/05/08 09:10:32 by gustavo-lin       #+#    #+#             */
+/*   Updated: 2025/05/24 21:18:01 by gustavo-lin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	*philo_routine(void *arg)
+int	init_rules_mutexes(t_rules *rules)
 {
-	t_philo	*philo;
+	int	i;
 
-	philo = (t_philo *)arg;
-	while (1)
+	i = -1;
+	rules->forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t)
+			* rules->philo_num);
+	if (!rules->forks)
+		return (0);
+	while (++i < rules->philo_num)
 	{
-		if (philo->rules->someone_died == 1
-			|| (philo->meals == philo->rules->must_eat
-				&& philo->rules->must_eat != 0))
-			return (NULL);
-		think(philo);
-		eat(philo);
-		sleep_philo(philo);
+		if (pthread_mutex_init(&rules->forks[i], NULL) != 0)
+		{
+			while (--i >= 0)
+				pthread_mutex_destroy(&rules->forks[i]);
+			free(rules->forks);
+			return (-1);
+		}
 	}
-	return (NULL);
+	return (1);
 }

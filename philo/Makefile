@@ -1,18 +1,17 @@
 CC = cc
 
-#HEADER = ./
-
 NAME = philo
 
 SRCS =	main.c\
 		input_validations.c\
 		utils_validations.c\
-		parser.c\
-		init_mutex.c\
+		init_rules.c\
+		init_forks_mutexes.c\
 		actions.c\
 		utils_actions.c\
+		init_philo.c\
 		philo_routine.c\
-		create_philo_thread.c
+		handle_threads.c
 
 OBJS =	$(SRCS:%.c=$(OBJ_DIR)/%.o)
 
