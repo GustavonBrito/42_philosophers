@@ -40,9 +40,9 @@ int	ft_atol(const char *nptr)
 	return (result * sign);
 }
 
-int valid_just_numbers(char *argv)
+int	valid_just_numbers(char *argv)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (argv[i])
