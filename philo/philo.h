@@ -6,7 +6,7 @@
 /*   By: gustavo-linux <gustavo-linux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 10:33:22 by gustavo-lin       #+#    #+#             */
-/*   Updated: 2025/05/22 17:29:27 by gustavo-lin      ###   ########.fr       */
+/*   Updated: 2025/05/25 21:34:43 by gustavo-lin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,54 +19,53 @@
 # include <sys/time.h>
 # include <unistd.h>
 
-// printf("Usage: ./philo [1-200 philosophers] [time_to_die] [time_to_eat]
-//[time_to_sleep] [optional: times_each_philo_must_eat]\n");
-
 struct				s_timeval
 {
-	time_t tv_sec;
-	suseconds_t tv_usec;
+	time_t			tv_sec;
+	suseconds_t		tv_usec;
 };
 
 typedef struct s_rules
 {
-	int 			philo_num; // Número de filósofos
-	long			time_to_die;	// Tempo máximo SEM comer antes de morrer (em ms)
-	long 			time_to_eat;   // Tempo para comer (em ms)
-	long 			time_to_sleep; // Tempo para dormir (em ms)
-	int				must_eat;// (Opcional) Quantas vezes cada filósofo deve comer
-	int 			someone_died;       // Flag para parar tudo quando alguém morrer
-	long 			start_time;        // Marca o início da simulação (em ms)
+	int				philo_num;
+	long			time_to_die;
+	long			time_to_eat;
+	long			time_to_sleep;
+	int				must_eat;
+	int				someone_died;
+	long			start_time;
 	int				scan_end;
-	pthread_mutex_t *forks; 		// Array de mutexes: cada garfo é um mutex
-	pthread_mutex_t	dead_philo;		// Mutex to access the variable someone died by more than one function
-	pthread_mutex_t times_to_eat;	// Mutex to access when must eat qty arg is passed 
-	pthread_mutex_t	m_write;		// Mutex para garantir que prints não se misturem
-}	t_rules;
+	pthread_mutex_t	*forks;
+	pthread_mutex_t	dead_philo;
+	pthread_mutex_t	m_write;
+}					t_rules;
 
 typedef struct s_philo
 {
-	int 			id;                      // ID único do filósofo (de 1 a n)
-	int 			meals;                   // Quantas vezes este filósofo já comeu
-	long 			last_meal;              // Timestamp da última refeição
+	int				id;
+	int				meals;
+	long			last_meal;
 	int				finished_eating;
-	pthread_t 		thread;            // A thread do filósofo
-	pthread_mutex_t *left_fork;  // Ponteiro para o garfo da esquerda (mutex)
-	pthread_mutex_t *right_fork; // Ponteiro para o garfo da direita (mutex)
-	t_rules			*rules;              // Ponteiro para t_rules
-}	t_philo;
+	pthread_t		thread;
+	pthread_mutex_t	*left_fork;
+	pthread_mutex_t	*right_fork;
+	t_rules			*rules;
+}					t_philo;
 
 int					init_validations(int argc, char **argv);
 int					ft_atol(const char *nptr);
 int					valid_just_numbers(char *argv);
-t_rules				*parser(int argc, char **argv, t_rules *rules);
-int					init_mutexes(t_rules *rules);
+t_rules				*init_rules(int argc, char **argv, t_rules *rules);
+int					init_forks_mutexes(t_rules *rules);
 long				get_timestamp(void);
 int					init_philo(t_philo **philo, t_rules *rules);
 void				think(t_philo *philo);
 void				sleep_philo(t_philo *philo);
 void				eat(t_philo *philo);
 void				die(t_philo philo);
+void				handle_threads(t_rules	*rules, t_philo	*philo);
+void				is_someone_dead(t_philo *philo);
+void				handle_forks(t_philo *philo);
 void				*dead_scan(void *arg);
 void				*must_eat_scan(void *arg);
 void				*philo_routine(void *arg);
