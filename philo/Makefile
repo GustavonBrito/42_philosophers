@@ -1,24 +1,23 @@
 CC = cc
 
-#HEADER = ./
-
 NAME = philo
 
 SRCS =	main.c\
 		input_validations.c\
 		utils_validations.c\
-		parser.c\
-		init_mutex.c\
+		init_rules.c\
+		init_forks_mutexes.c\
 		actions.c\
 		utils_actions.c\
-		init_philo_thread.c\
-		philo_routine.c 
+		init_philo.c\
+		philo_routine.c\
+		handle_threads.c
 
 OBJS =	$(SRCS:%.c=$(OBJ_DIR)/%.o)
 
 OBJ_DIR = build
 
-#CFLAGS = -Werror -Wall -Wextra
+CFLAGS = -Werror -Wall -Wextra
 THREAD_FLAGS = -pthread
 
 all: $(NAME)
