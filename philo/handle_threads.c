@@ -6,7 +6,7 @@
 /*   By: gustavo-linux <gustavo-linux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 18:54:38 by gustavo-lin       #+#    #+#             */
-/*   Updated: 2025/05/25 19:04:51 by gustavo-lin      ###   ########.fr       */
+/*   Updated: 2025/08/06 20:48:50 by gustavo-lin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	handle_threads(t_rules *rules, t_philo *philo)
 
 	i = -1;
 	pthread_create(&thread_dead_scan, NULL, dead_scan, philo);
-	pthread_create(&thread_must_eat_scan, NULL, must_eat_scan, philo);
+	if (rules->must_eat != 0)
+		pthread_create(&thread_must_eat_scan, NULL, must_eat_scan, philo);
 	while (++i < rules->philo_num)
 		pthread_create(&philo[i].thread, NULL, philo_routine, &philo[i]);
 	i = -1;
