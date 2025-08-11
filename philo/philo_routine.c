@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_routine.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gustavo-linux <gustavo-linux@student.42    +#+  +:+       +#+        */
+/*   By: gserafio <gserafio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 00:08:24 by gustavo-lin       #+#    #+#             */
-/*   Updated: 2025/05/25 02:02:06 by gustavo-lin      ###   ########.fr       */
+/*   Updated: 2025/08/11 15:37:18 by gserafio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -23,17 +23,17 @@ THREAD_FLAGS = -pthread
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(THREAD_FLAGS) $(OBJS) -o $@
+	@$(CC) $(CFLAGS) $(THREAD_FLAGS) $(OBJS) -o $@
 
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJS)
+	@rm -f $(OBJS)
 
 fclean:
-	rm -f $(OBJS) $(NAME)
+	@rm -f $(OBJS) $(NAME)
 
 re:
 	@$(MAKE) fclean
