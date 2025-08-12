@@ -6,7 +6,7 @@
 /*   By: gserafio <gserafio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 15:49:01 by gustavo-lin       #+#    #+#             */
-/*   Updated: 2025/08/11 15:38:39 by gserafio         ###   ########.fr       */
+/*   Updated: 2025/08/12 10:05:00 by gserafio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void	eat(t_philo *philo)
 		printf("%ld %d is eating\n", get_timestamp() - philo->rules->start_time,
 			philo->id);
 	pthread_mutex_unlock(&philo->rules->m_write);
-	usleep(philo->rules->time_to_eat * 1000);
 	philo->last_meal = get_timestamp();
+	usleep(philo->rules->time_to_eat * 1000);
 	philo->meals++;
 	pthread_mutex_unlock(philo->right_fork);
 	pthread_mutex_unlock(philo->left_fork);
