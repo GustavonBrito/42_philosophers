@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gustavo-linux <gustavo-linux@student.42    +#+  +:+       +#+        */
+/*   By: gserafio <gserafio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/01 10:33:22 by gustavo-lin       #+#    #+#             */
-/*   Updated: 2025/05/25 21:34:43 by gustavo-lin      ###   ########.fr       */
+/*   Created: 2025/08/15 13:20:03 by gserafio          #+#    #+#             */
+/*   Updated: 2025/08/15 13:20:05 by gserafio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void				sleep_philo(t_philo *philo);
 void				eat(t_philo *philo);
 void				die(t_philo philo);
 void				handle_threads(t_rules	*rules, t_philo	*philo);
-void				is_someone_dead(t_philo *philo);
+void				take_fork(t_philo *philo);
 void				handle_forks(t_philo *philo);
 void				*dead_scan(void *arg);
 void				*must_eat_scan(void *arg);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_validations.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gustavo-linux <gustavo-linux@student.42    +#+  +:+       +#+        */
+/*   By: gserafio <gserafio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/01 10:33:23 by gustavo-lin       #+#    #+#             */
-/*   Updated: 2025/05/25 18:43:01 by gustavo-lin      ###   ########.fr       */
+/*   Created: 2025/08/15 13:19:47 by gserafio          #+#    #+#             */
+/*   Updated: 2025/08/15 13:19:49 by gserafio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

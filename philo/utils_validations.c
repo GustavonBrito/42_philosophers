@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_validations.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gustavo-linux <gustavo-linux@student.42    +#+  +:+       +#+        */
+/*   By: gserafio <gserafio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/04 22:40:40 by gustavo-lin       #+#    #+#             */
-/*   Updated: 2025/05/07 00:02:25 by gustavo-lin      ###   ########.fr       */
+/*   Created: 2025/08/15 13:20:17 by gserafio          #+#    #+#             */
+/*   Updated: 2025/08/15 13:20:18 by gserafio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_rules.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gustavo-linux <gustavo-linux@student.42    +#+  +:+       +#+        */
+/*   By: gserafio <gserafio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/24 21:14:02 by gustavo-lin       #+#    #+#             */
-/*   Updated: 2025/05/25 21:34:38 by gustavo-lin      ###   ########.fr       */
+/*   Created: 2025/08/15 13:19:42 by gserafio          #+#    #+#             */
+/*   Updated: 2025/08/15 13:19:43 by gserafio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

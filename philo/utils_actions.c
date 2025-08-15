@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gserafio <gserafio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/09 08:34:24 by gustavo-lin       #+#    #+#             */
-/*   Updated: 2025/08/12 10:04:42 by gserafio         ###   ########.fr       */
+/*   Created: 2025/08/15 13:20:11 by gserafio          #+#    #+#             */
+/*   Updated: 2025/08/15 13:20:13 by gserafio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	*must_eat_scan(void *arg)
 	return (philo->rules->scan_end = 1, NULL);
 }
 
-void	is_someone_dead(t_philo *philo)
+void	take_fork(t_philo *philo)
 {
 	if (philo->rules->someone_died != 1)
 		printf("%ld %d has taken a fork\n", get_timestamp()
@@ -88,27 +88,26 @@ void	handle_forks(t_philo *philo)
 {
 	if (philo->id % 2 == 0)
 	{
-		usleep(1000);
+		usleep(500);
 		pthread_mutex_lock(philo->right_fork);
 		pthread_mutex_lock(&philo->rules->m_write);
-		is_someone_dead(philo);
+		take_fork(philo);
 		pthread_mutex_unlock(&philo->rules->m_write);
 		pthread_mutex_lock(philo->left_fork);
 		pthread_mutex_lock(&philo->rules->m_write);
-		is_someone_dead(philo);
+		take_fork(philo);
 		pthread_mutex_unlock(&philo->rules->m_write);
 	}
 	else
 	{
+		usleep(500);
 		pthread_mutex_lock(philo->left_fork);
 		pthread_mutex_lock(&philo->rules->m_write);
-		is_someone_dead(philo);
-		if (philo->rules->philo_num == 1)
-			usleep(philo->rules->time_to_die * 1000);
+		take_fork(philo);
 		pthread_mutex_unlock(&philo->rules->m_write);
 		pthread_mutex_lock(philo->right_fork);
 		pthread_mutex_lock(&philo->rules->m_write);
-		is_someone_dead(philo);
+		take_fork(philo);
 		pthread_mutex_unlock(&philo->rules->m_write);
 	}
 }
