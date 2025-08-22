@@ -14,8 +14,8 @@
 
 int	main(int argc, char **argv)
 {
-	t_rules		*rules;
-	t_philo		*philo;
+	t_rules	*rules;
+	t_philo	*philo;
 
 	rules = (t_rules *)malloc(sizeof(t_rules));
 	if (!rules)
@@ -27,8 +27,8 @@ int	main(int argc, char **argv)
 		return (free(rules), free(philo), 0);
 	rules->start_time = get_timestamp();
 	handle_threads(rules, philo);
-	if (philo->rules->someone_died == 1 \
-	|| (philo->meals >= philo->rules->must_eat \
-	&& philo->rules->must_eat != 0))
+	if (philo->rules->someone_died == 1
+		|| (philo->meals >= philo->rules->must_eat
+			&& philo->rules->must_eat != 0))
 		return (free(rules->forks), free(philo), free(rules), 0);
 }
