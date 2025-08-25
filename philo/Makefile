@@ -11,7 +11,8 @@ SRCS =	main.c\
 		utils_actions.c\
 		init_philo.c\
 		philo_routine.c\
-		handle_threads.c
+		handle_threads.c\
+		actions_tools.c
 
 OBJS =	$(SRCS:%.c=$(OBJ_DIR)/%.o)
 

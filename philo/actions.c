@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   actions.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gustavo <gustavo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 13:19:17 by gserafio          #+#    #+#             */
-/*   Updated: 2025/08/22 16:06:25 by ubuntu           ###   ########.fr       */
+/*   Updated: 2025/08/24 22:13:26 by gustavo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,17 @@ void	think(t_philo *philo);
 
 void	think(t_philo *philo)
 {
-	pthread_mutex_lock(&philo->rules->m_write);
+	pthread_mutex_lock(&philo->rules->dead_philo);
 	if (philo->rules->someone_died != 1)
+	{
+		pthread_mutex_unlock(&philo->rules->dead_philo);
+		pthread_mutex_lock(&philo->rules->m_write);
 		printf("%ld %d is thinking\n", get_timestamp()
 			- philo->rules->start_time, philo->id);
-	pthread_mutex_unlock(&philo->rules->m_write);
+		pthread_mutex_unlock(&philo->rules->m_write);
+	}
+	else
+		pthread_mutex_unlock(&philo->rules->dead_philo);
 }
 
 void	eat(t_philo *philo)

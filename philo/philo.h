@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gustavo <gustavo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 13:20:03 by gserafio          #+#    #+#             */
-/*   Updated: 2025/08/22 17:41:23 by ubuntu           ###   ########.fr       */
+/*   Updated: 2025/08/24 23:23:59 by gustavo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,14 @@ void				think(t_philo *philo);
 void				sleep_philo(t_philo *philo);
 void				eat(t_philo *philo);
 void				die(t_philo philo);
-void				handle_threads(t_rules	*rules, t_philo	*philo);
+void				handle_threads(t_rules *rules, t_philo *philo);
 void				take_fork(t_philo *philo);
 void				handle_forks(t_philo *philo);
 void				*dead_scan(void *arg);
 void				*must_eat_scan(void *arg);
 void				*philo_routine(void *arg);
+void				*must_eat_loop(t_philo *philo, t_rules *rules, int i,
+						int finished_eat);
+void				*dead_scan_loop(t_philo *philo, t_rules *rules, int i);
 
 #endif
