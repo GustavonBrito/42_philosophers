@@ -87,3 +87,26 @@ void	*dead_scan_loop(t_philo *philo, t_rules *rules, int i)
 	}
 	return (NULL);
 }
+
+void	check_philo_num(t_philo *philo)
+{
+	if (philo->rules->philo_num == 1)
+	{
+		while (1)
+		{
+			if (get_timestamp()
+				- philo->rules->start_time > philo->rules->time_to_die)
+			{
+				philo->rules->someone_died = 1;
+				return ;
+			}
+		}
+	}
+	else
+	{
+		pthread_mutex_lock(philo->right_fork);
+		pthread_mutex_lock(&philo->rules->m_write);
+		take_fork(philo);
+		pthread_mutex_unlock(&philo->rules->m_write);
+	}
+}

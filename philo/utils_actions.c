@@ -83,24 +83,6 @@ void	handle_forks(t_philo *philo)
 		pthread_mutex_lock(&philo->rules->m_write);
 		take_fork(philo);
 		pthread_mutex_unlock(&philo->rules->m_write);
-		if (philo->rules->philo_num == 1)
-		{
-			while (1)
-			{
-				if (get_timestamp()
-					- philo->rules->start_time > philo->rules->time_to_die)
-				{
-					philo->rules->someone_died = 1;
-					return ;
-				}
-			}
-		}
-		else
-		{
-			pthread_mutex_lock(philo->right_fork);
-			pthread_mutex_lock(&philo->rules->m_write);
-			take_fork(philo);
-			pthread_mutex_unlock(&philo->rules->m_write);
-		}
+		check_philo_num(philo);
 	}
 }
