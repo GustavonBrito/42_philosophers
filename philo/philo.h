@@ -72,5 +72,6 @@ void				*philo_routine(void *arg);
 void				*must_eat_loop(t_philo *philo, t_rules *rules, int i,
 						int finished_eat);
 void				*dead_scan_loop(t_philo *philo, t_rules *rules, int i);
+int					check_death(t_philo *philo, t_rules *rules, int i);
 
 #endif

@@ -41,15 +41,14 @@ void	*must_eat_loop(t_philo *philo, t_rules *rules, int i, int finished_eat)
 	return (NULL);
 }
 
-static int	check_death(t_philo *philo, t_rules *rules, int i)
+int	check_death(t_philo *philo, t_rules *rules, int i)
 {
 	if ((get_timestamp() - philo->rules->start_time) >= rules->time_to_die
 		&& philo->rules->philo_num == 1)
 	{
+		pthread_mutex_unlock(&rules->dead_philo);
 		die(philo[i]);
 		philo->rules->scan_end = 1;
-		pthread_mutex_unlock(&rules->dead_philo);
-		pthread_mutex_unlock(philo[0].left_fork);
 		return (1);
 	}
 	if ((get_timestamp() - philo[i].last_meal) >= rules->time_to_die

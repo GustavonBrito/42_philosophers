@@ -25,10 +25,13 @@ int	init_philo(t_philo **philo, t_rules *rules)
 		(*philo)[i].id = i + 1;
 		(*philo)[i].rules = rules;
 		(*philo)[i].left_fork = &rules->forks[i];
-		(*philo)[i].right_fork = &rules->forks[(i + 1) % rules->philo_num];
 		(*philo)[i].last_meal = get_timestamp();
 		(*philo)[i].finished_eating = 0;
 		(*philo)[i].meals = 0;
+		if (rules->philo_num == 1)
+			continue ;
+		else
+			(*philo)[i].right_fork = &rules->forks[(i + 1) % rules->philo_num];
 	}
 	return (1);
 }

@@ -47,6 +47,8 @@ int	valid_just_numbers(char *argv)
 	i = 0;
 	while (argv[i])
 	{
+		if (argv[0] == 48)
+			return (-1);
 		if (!(argv[i] >= 48 && argv[i] <= 57))
 			return (-1);
 		i++;

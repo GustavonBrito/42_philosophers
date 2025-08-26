@@ -54,7 +54,8 @@ void	eat(t_philo *philo)
 	pthread_mutex_lock(&philo->rules->dead_philo);
 	philo->meals++;
 	pthread_mutex_unlock(&philo->rules->dead_philo);
-	pthread_mutex_unlock(philo->right_fork);
+	if (philo->rules->philo_num > 1)
+		pthread_mutex_unlock(philo->right_fork);
 	pthread_mutex_unlock(philo->left_fork);
 }
 
