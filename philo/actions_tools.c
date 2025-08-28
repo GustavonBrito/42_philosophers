@@ -6,7 +6,7 @@
 /*   By: gustavo <gustavo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 22:56:00 by gustavo           #+#    #+#             */
-/*   Updated: 2025/08/28 15:20:52 by gustavo          ###   ########.fr       */
+/*   Updated: 2025/08/28 15:44:45 by gustavo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	*must_eat_loop(t_philo *philo, t_rules *rules, int i, int finished_eat)
 				philo[i].finished_eating = 1, NULL);
 		else
 			pthread_mutex_unlock(&rules->dead_philo);
+		usleep(100);
 		i++;
 	}
 	return (NULL);
@@ -45,9 +46,9 @@ int	check_death(t_philo *philo, t_rules *rules, int i)
 	if ((get_timestamp() - philo->rules->start_time) > rules->time_to_die
 		&& philo->rules->philo_num == 1)
 	{
-		philo->rules->scan_end = 1;
 		pthread_mutex_unlock(&rules->dead_philo);
-		die(&philo[0]);
+		philo->rules->scan_end = 1;
+		die(philo[0]);
 		return (1);
 	}
 	if ((get_timestamp() - philo[i].last_meal) > rules->time_to_die + 1
@@ -55,7 +56,7 @@ int	check_death(t_philo *philo, t_rules *rules, int i)
 	{
 		pthread_mutex_unlock(&rules->dead_philo);
 		philo->rules->scan_end = 1;
-		die(&philo[i]);
+		die(philo[i]);
 		return (1);
 	}
 	return (0);
@@ -81,6 +82,7 @@ void	*dead_scan_loop(t_philo *philo, t_rules *rules, int i)
 		if (check_death(philo, rules, i))
 			return (NULL);
 		pthread_mutex_unlock(&rules->dead_philo);
+		usleep(100);
 		i++;
 	}
 	return (NULL);

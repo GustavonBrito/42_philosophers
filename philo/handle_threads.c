@@ -6,7 +6,7 @@
 /*   By: gustavo <gustavo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 13:19:24 by gserafio          #+#    #+#             */
-/*   Updated: 2025/08/27 23:41:23 by gustavo          ###   ########.fr       */
+/*   Updated: 2025/08/28 15:49:25 by gustavo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ void	handle_threads(t_rules *rules, t_philo *philo)
 	while (++i < rules->philo_num)
 		pthread_join(philo[i].thread, NULL);
 	pthread_join(thread_dead_scan, NULL);
-	if (rules->must_eat != 0)
+	if (rules->must_eat != 0 && rules->philo_num > 1)
 		pthread_join(thread_must_eat_scan, NULL);
 }
