@@ -6,7 +6,7 @@
 /*   By: gustavo <gustavo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 13:20:11 by gserafio          #+#    #+#             */
-/*   Updated: 2025/08/28 01:21:01 by gustavo          ###   ########.fr       */
+/*   Updated: 2025/08/28 15:21:05 by gustavo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	handle_forks(t_philo *philo)
 {
 	if (philo->id % 2 == 0)
 	{
-		usleep(500);
+		usleep(100);
 		pthread_mutex_lock(philo->right_fork);
 		pthread_mutex_lock(&philo->rules->m_write);
 		take_fork(philo);
@@ -78,7 +78,6 @@ void	handle_forks(t_philo *philo)
 	}
 	else
 	{
-		usleep(500);
 		pthread_mutex_lock(philo->left_fork);
 		pthread_mutex_lock(&philo->rules->m_write);
 		take_fork(philo);
