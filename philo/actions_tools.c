@@ -6,7 +6,7 @@
 /*   By: gustavo <gustavo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 22:56:00 by gustavo           #+#    #+#             */
-/*   Updated: 2025/08/28 00:49:51 by gustavo          ###   ########.fr       */
+/*   Updated: 2025/08/28 01:21:46 by gustavo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	*must_eat_loop(t_philo *philo, t_rules *rules, int i, int finished_eat)
 				philo[i].finished_eating = 1, NULL);
 		else
 			pthread_mutex_unlock(&rules->dead_philo);
+		usleep(1000);
 		i++;
 	}
 	return (NULL);
@@ -42,7 +43,7 @@ void	*must_eat_loop(t_philo *philo, t_rules *rules, int i, int finished_eat)
 
 int	check_death(t_philo *philo, t_rules *rules, int i)
 {
-	if ((get_timestamp() - philo->rules->start_time) > rules->time_to_die + 2
+	if ((get_timestamp() - philo->rules->start_time) > rules->time_to_die
 		&& philo->rules->philo_num == 1)
 	{
 		philo->rules->scan_end = 1;
@@ -50,7 +51,7 @@ int	check_death(t_philo *philo, t_rules *rules, int i)
 		die(philo[0]);
 		return (1);
 	}
-	if ((get_timestamp() - philo[i].last_meal) > rules->time_to_die + 2
+	if ((get_timestamp() - philo[i].last_meal) > rules->time_to_die + 3
 		&& philo[i].last_meal != 0 && philo->rules->must_eat == 0)
 	{
 		philo->rules->scan_end = 1;
@@ -81,6 +82,7 @@ void	*dead_scan_loop(t_philo *philo, t_rules *rules, int i)
 		if (check_death(philo, rules, i))
 			return (NULL);
 		pthread_mutex_unlock(&rules->dead_philo);
+		usleep(1000);
 		i++;
 	}
 	return (NULL);
